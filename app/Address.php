@@ -7,4 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Address extends Model
 {
     protected $fillable = ['address','city','state','country','post_code'];
+
+    public function seller(){
+        return $this->hasOne(Seller::class);
+    }
 }
