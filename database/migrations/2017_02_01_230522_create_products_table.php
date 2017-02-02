@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->foreign('seller_id')->references('id')->on('sellers');
             $table->timestamps();
         });
+
     }
 
     /**
