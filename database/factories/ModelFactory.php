@@ -22,3 +22,46 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Tag::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+    ];
+});
+
+$factory->define(App\Address::class, function (Faker\Generator $faker) {
+    return [
+        'address' => $faker->streetAddress,
+        'city' => $faker->city,
+        'state' => $faker->state,
+        'country' => $faker->country,
+        'post_code' => $faker->postcode,
+    ];
+});
+
+$factory->define(App\Seller::class, function (Faker\Generator $faker) {
+    return [
+        'first_name' => $faker->firstName,
+        'last_name' => $faker->lastName,
+        'address_id' => $faker->unique()->numberBetween(1,App\User::count()),
+    ];
+});
+
+$factory->define(App\Product::class, function (Faker\Generator $faker) {
+    $sellers = App\User::pluck('id')-toArray();
+    return [
+        'name' => $faker->name,
+        'price' => $faker->randomFloat(2,1,1000),
+        'description' => $faker->text(),
+        'seller_id' => $faker -> $this->randomElement($sellers),
+    ];
+});
+
+$factory->define(App\Review::class, function (Faker\Generator $faker) {
+    return [
+        'reviewer_name' => $faker->name,
+        'title' => $faker->sentence(4,true),
+        'content' => $faker->paragraph(4,true),
+        'review_created_at' => $faker->date('Y-m-d', 'now'),
+    ];
+});

@@ -9,10 +9,10 @@ class Seller extends Model
     protected $fillable = ['first_name','last_name','address_id'];
 
     public function address(){
-        return $this->hasOne(Address::class);
+        return $this->hasOne('App\Address');
     }
 
     public function products(){
-        return $this->hasMany(Product::class);
+        return $this->hasMany('App\Product');
     }
 }

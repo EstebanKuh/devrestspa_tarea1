@@ -9,15 +9,15 @@ class Product extends Model
     protected $fillable = ['name','price','description','seller_id'];
 
     public function tags(){
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany('App\Tag');
     }
 
     public function seller(){
-        return $this->belongsTo(Seller::class);
+        return $this->belongsTo('App\Seller');
     }
 
     public function reviews(){
-        return $this->hasMany(Review::class);
+        return $this->hasMany('App\Review');
     }
 
 }
