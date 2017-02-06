@@ -21,30 +21,25 @@ class AppTableSeeder extends Seeder
         $numOfSellers = 2;
         $numOfProducts = 3;
         $numOfSellerAddresses = 2;
-        $numOfReviews = 60;
+        $numOfReviews = 10;
 
-        $tags = factory(Tag::class,$numOfTags)->create();
+        factory(Tag::class,$numOfTags)->create();
 
-        $sellerAddresses = factory(Address::class, $numOfSellerAddresses)->create();
+        factory(Address::class, $numOfSellerAddresses)->create();
 
         $sellers = factory(Seller::class,$numOfSellers)->create();
 
         foreach($sellers as $seller){
-            $products= factory(Product::class, $numOfProducts)
+            factory(Product::class, $numOfProducts)
                 -> create(['seller_id' => $seller->id])
                     -> each (
-                        function ($product){
+                        function ($product) use($numOfReviews){
                             $product ->tags()->sync(
                                 App\Tag::all()->random(2)
                             );
+                            factory(Review::class,$numOfReviews)->create(['product_id' => $product->id]);
                         }
                     );
         }
-
-        foreach($products as $product){
-            factory(Review::class, $numOfReviews)->create(['product_id' => $product->id]);
-        }
-
-
     }
 }
