@@ -43,17 +43,17 @@ $factory->define(App\Seller::class, function (Faker\Generator $faker) {
     return [
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
-        'address_id' => $faker->unique()->numberBetween(1,App\User::count()),
+        'address_id' => $faker->unique()->numberBetween(1,App\Address::count()),
     ];
 });
 
 $factory->define(App\Product::class, function (Faker\Generator $faker) {
-    $sellers = App\User::pluck('id')-toArray();
+    $sellers = App\Seller::pluck('id')->toArray();
     return [
         'name' => $faker->name,
         'price' => $faker->randomFloat(2,1,1000),
         'description' => $faker->text(),
-        'seller_id' => $faker -> $this->randomElement($sellers),
+        'seller_id' => $faker -> randomElement($sellers),
     ];
 });
 

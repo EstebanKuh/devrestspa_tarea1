@@ -5,6 +5,8 @@ use App\Seller;
 use App\Product;
 use App\Review;
 use App\Tag;
+use App\Address;
+
 
 class AppTableSeeder extends Seeder
 {
@@ -22,6 +24,9 @@ class AppTableSeeder extends Seeder
         $numOfReviews = 60;
 
         $tags = factory(Tag::class,$numOfTags)->create();
+
+        $sellerAddresses = factory(Address::class, $numOfSellerAddresses)->create();
+
         $sellers = factory(Seller::class,$numOfSellers)->create();
 
         foreach($sellers as $seller){
@@ -30,7 +35,7 @@ class AppTableSeeder extends Seeder
                     -> each (
                         function ($product){
                             $product ->tags()->sync(
-                                Tag::all()->random(2)
+                                App\Tag::all()->random(2)
                             );
                         }
                     );
