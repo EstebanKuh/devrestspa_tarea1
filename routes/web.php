@@ -25,7 +25,6 @@ Route::delete('sellers/{id}','SellerController@delete');
 Route::post('sellers/{id}/address','AddressController@create');
 Route::put('sellers/{id}/address','AddressController@update');
 
-
 Route::get('products','ProductController@index');
 Route::get('products/{id}','ProductController@show');
 Route::post('products','ProductController@create');
