@@ -34,9 +34,4 @@ Route::delete('products/{id}','ProductController@delete');
 
 Route::get('products/{id}/reviews','ReviewController@index');
 Route::post('products/{id}/reviews','ReviewController@create');
-Route::delete('products/{id}/reviews/{id}','ReviewController@delete');
-
-Route::delete('sellers','SellerController@delete');
-
-Route::post('sellers','SellerController@create');
-Route::put('sellers','SellerController@update');
+Route::delete('products/{product_id}/reviews/{review_id}','ReviewController@delete');
