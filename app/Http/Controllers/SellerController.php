@@ -16,14 +16,14 @@ class SellerController extends Controller
     
     public function show($idSeller){
         $seller = Seller::find($idSeller);
-        return $seller;
+        return Response::json($seller);
     }
     
     public function create(Request $request){
         $attributes = $request->all();
         $newSeller = Seller::create($attributes);
         return Response::json($newSeller);
-    }
+    }   
    
     public function update(Request $request, $idSeller){
         $updateSeller = Seller::find($idSeller);

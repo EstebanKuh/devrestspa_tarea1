@@ -17,7 +17,7 @@ class CreateSellersTable extends Migration
             $table->increments('id');
             $table->string('first_name');
             $table->string('last_name');
-            $table->integer('address_id')->unsigned();
+            $table->integer('address_id')->unsigned()->nullable();
             $table->foreign('address_id')->references('id')->on('addresses');
             $table->timestamps();
         });

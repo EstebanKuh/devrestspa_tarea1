@@ -14,9 +14,10 @@ class AddressController extends Controller
     public function create(Request $request, $idSeller){
         
         $attributes = $request->all();
-        $seller = Seller::with('address')->find($idSeller);
+        $seller = Seller::find($idSeller);
         $address = Address::create($attributes);
         $seller-> address_id = $address->id;
+        $seller->save();
         
         return Response::json($seller);
     }
@@ -27,6 +28,6 @@ class AddressController extends Controller
         $updateAddress = Address::with('seller')->find($idSeller);
         $updateAddress->update($attributes);
         
-        return $updateAddress
+        return $updateAddress;
     }
 }
