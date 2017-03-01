@@ -11,11 +11,11 @@ class SellerController extends Controller
 {
     public function index(){
         $sellers = Seller::all();
-        return $sellers;
+        return Response::json($sellers);
     }
     
     public function show($idSeller){
-        $seller = Seller::find($idSeller);
+        $seller = Seller::findOrFail($idSeller);
         return Response::json($seller);
     }
     
@@ -26,23 +26,23 @@ class SellerController extends Controller
     }   
    
     public function update(Request $request, $idSeller){
-        $updateSeller = Seller::find($idSeller);
+        $updateSeller = Seller::findOrFail($idSeller);
         $attributes =  $request->all();
         $updateSeller->update($attributes);
-        return $updateSeller;
+        return Response::json($updateSeller);
     }
     
     public function edit(Request $request, $idSeller){
-        $updateSeller = Seller::find($idSeller);
-        $attributes = $request->input();
+        $updateSeller = Seller::findOrFail($idSeller);
+        $attributes = $request->all();
         $updateSeller->update($attributes);
-        return response()->json($updateSeller);
+        return Response::json($updateSeller);
     }
    
    
     public function delete($idSeller){
         $removeSeller = Seller::find($idSeller);
         $removeSeller->delete();
-        return response()->json($removeSeller);
+        return Response::json($removeSeller);
     }
 }
